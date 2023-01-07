@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>org.com</title>
+        <center 
+        style="background-color:cadetblue;color: white;
+  		text-align: center;font-family: verdana;
+  		font-size: 20px;
+  		padding: 15px;">
+  		<h2>Welcome to Org.com<h2>
+  		</center>
+    </head>
+
+    
+    <body>
+    <center th:switch="${employee}">
+    
+    <center th:case="null">
+    <h2> No Records Found !!</h2>
+    </center>
+    
+    <br><br>
+    <div th:case="*">
+    <table border="1" cellpadding="10">
+     <thead>
+             <tr>
+                 <th>Name</th>
+                 <th>Email</th>
+                 <th>Department</th>
+                 <th>Action1</th>
+                 <th>Action2</th>
+               
+              </tr>
+     </thead>
+     <tbody>
+     	<tr th:each="employee : ${employee}">
+     		
+     		<td th:text="${employee.name}"></td>
+     		<td th:text="${employee.email}"></td>
+     		<td th:text="${employee.department}"></td>
+     		<td>
+     		<a th:href = "@{/edit/{id}(id=${employee.id})}">Edit</a>
+     		</td>
+     		<td>
+     		<a onclick="alert('Confirm to delete')" th:href = "@{/delete/{id}(id=${employee.id})}">Delete</a>
+     		</td>
+  
+     	</tr>
+     </tbody>
+     
+    </table>
+     
+     
+     
+    
+    </div>
+  	<br>
+     <a href="/addEmp"><button>+ Add new Employee</button></a>
+   	
+    </center>
+    
+   
+
+    </body>
+
+</html>

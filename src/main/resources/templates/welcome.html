@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th = "https://www.thymeleaf.org">
+<head>
+ <title>org.com</title>
+        <center 
+        style="background-color:cadetblue;color: white;
+  		text-align: center;font-family: verdana;
+  		font-size: 20px;
+  		padding: 15px;">
+  		<h2>Welcome to Org.com<h2>
+  		</center>
+</head>
+<body>
+<center>
+
+<h2>Employee details saved Successfully</h2>
+	<table border="1" cellpadding="10">
+	<tbody>
+	<tr>
+	<td>Name</td>
+	<td style="text-align: center" th:text="${name}"></td>
+	</tr>
+	
+	<tr>
+	<td>Email</td>
+	<td style="text-align: center" th:text="${email}"></td>
+	</tr>
+	
+	<tr>
+	<td>Department</td>
+	<td style="text-align: center" th:text="${dept}"></td>
+	</tr>
+
+	
+	</tbody>
+	</table>
+<br>
+<a href="/"><button>Back to Home</button></a>
+</center>
+</body>
+</html>

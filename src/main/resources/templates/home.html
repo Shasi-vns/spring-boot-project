@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>org.com</title>
+        <center 
+        style="background-color:cadetblue;color: white;
+  		text-align: center;font-family: verdana;
+  		font-size: 20px;
+  		padding: 15px;">
+  		<h2>Welcome to Org.com<h2>
+  		</center>
+  		
+        <br><br>
+        <script type="text/javascript">
+        function validate()
+        {
+            var text = document.getElementById("mail").value;
+            var regx = /^([a-z0-9\.-]+)@([a-z0-9-]+).([a-z]{2,8})(.[a-z]{2,8})?$/;
+            if(regx.test(text))
+            {
+                document.getElementById("lbuser").innerHTML="Valid";
+                document.getElementById("lbuser").style.visibility="visible";
+                document.getElementById("lbuser").style.color="green";
+                return true;
+            }
+            else
+            {
+                document.getElementById("lbuser").innerHTML="InValid";
+                document.getElementById("lbuser").style.visibility="visible";
+                document.getElementById("lbuser").style.color="red";
+                return false;
+
+            }
+        }
+        
+        </script>
+    </head>
+
+    
+    <body>
+    
+    <center>
+    <form onsubmit="return validate();" action="#" th:action="@{/insert}" method="post">
+    	
+    	<table border="1" cellpadding="10">
+
+        <tr>
+        	<td style="text-align: center"><label for="name">Name :</label></td>
+       	 	<td><input type="text" name="name" placeholder="Enter Your Name"/></td>    	
+        </tr>
+        
+        
+        <tr>
+        	<td style="text-align: center"><label for="dep">Department :</label></td>
+        	<td><input type="text" name="department" placeholder="Enter Your Department"/></td>
+        </tr>
+        	
+        	
+        <tr>
+        	<td style="text-align: center"><label for="dep">Email :</label></td>
+        	<td><input id="mail" type="email" name="email" placeholder="Enter Your Mail"/>
+        	<label id="lbuser" style="color:red;visibility:hidden" for="email">Invalid email..!</label></td>
+        </tr>
+    	
+    	</table>
+		<br>
+        <button type="submit">Submit</button>
+        
+    		
+	</form>
+		<br>
+        <a style="margin-right: 300px;" href="/"><button>Back to Home</button></a>   
+         </center>
+    </body>
+
+</html>

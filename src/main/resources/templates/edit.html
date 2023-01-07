@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>org.com</title>
+        <center 
+        style="background-color:cadetblue;color: white;
+  		text-align: center;font-family: verdana;
+  		font-size: 20px;
+  		padding: 15px;">
+  		<h2>Welcome to Org.com<h2>
+  		</center>
+    </head>
+
+    
+    <body>
+    <br><br>
+    <div align="center">
+    <form action="#" th:action="@{/insert}" th:object="${employee}" method="post">
+    	
+    	<table border="1" cellpadding="10">
+
+        
+        <tr>
+        	<td style="text-align: center"><label for="name">Name :</label></td>
+       	 	<td><input type="text" th:field="*{name}" /></td>
+        </tr>
+
+        <tr>
+        	<td style="text-align: center"><label for="dep">Department :</label></td>       	
+        	<td><input type="text" th:field="*{department}" /></td>
+        </tr>
+        
+        <tr>
+        	<td style="text-align: center"><label for="email">Email :</label></td>    	
+        	<td><input type="text" th:field="*{email}" /></td>
+        </tr>
+		
+		</table>
+		<br><br>
+        <button style="margin-left:255px;" type="submit">Update</button>
+    		
+	</form>
+    </div>
+    </body>
+
+</html>
