@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>org.com</title>
-        <center 
+         <title>org.com</title>
+        <div 
         style="background-color:cadetblue;color: white;
-  		text-align: center;font-family: verdana;
-  		font-size: 20px;
-  		padding: 15px;">
+  		text-align: left;font-family: verdana;
+  		font-size: 18px;
+  		padding: 10px;">
   		<h2>Welcome to Org.com<h2>
+  		<h3 style="text-align: right;font-size:15px;">Hi. <span style="font-family:Verdana;color:yellow" th:text="${User}"></span></h3>
+  		<p style="text-align: right;font-size:15px;">
+  		<span><a href="/">Home</a></span>
+  		<span><a href="/addEmp">Add Employee</a></span>
+  		<span><a href="/logout">Logout</a></span>
+  		</p>
+  		</div>
   		</center>
     </head>
 

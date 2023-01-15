@@ -54,4 +54,10 @@ public class EmployeeService {
     	}
     }
 
+    
+    public List<Employee> findbyemail(String keyword){
+    	return empRep.findByEmail(keyword);
+    }
+    
+    
 }
