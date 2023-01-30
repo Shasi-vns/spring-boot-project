@@ -6,14 +6,14 @@
         style="background-color:cadetblue;color: white;
   		text-align: left;font-family: verdana;
   		font-size: 18px;
-  		padding: 10px;">
+  		padding: 5px;">
   		<h2>Welcome to Org.com<h2>
   		<p style="font-size:15px;">
   		<span style="text-align: left;font-family:Verdana;color:yellow">Hi. <span th:text="${User}"></span></span>
   		</p>
   		<p>
   		<span><a class="btn btn-primary" style="color: white;" href="/">Home</a></span>
-  		<span th:if="${right=='[ADMIN]'}"><a class="btn btn-primary" style="color: white;" href="/usersList">Users</a></span>
+  		<span><a class="btn btn-primary" style="color: white;" href="/usersList">Users</a></span>
   		<span><a class="btn btn-primary" style="color: white;" href="/addEmp">AddEmployee</a></span>
   		<span><a class="btn btn-primary" style="color: white;" href="/logout">LogOut</a></span>
   		</span>
@@ -26,11 +26,15 @@
     <body>
     <br><br>
     <div align="center">
-    <form action="#" th:action="@{/insert}" th:object="${employee}" method="post">
+    <form action="#" th:action="@{/reInsertUser}" th:object="${user}" method="post">
     	
         	<label style="visibility:hidden;" for="name">Id :</label>
         	
        	 	<input style="visibility:hidden;" type="text" th:field="*{id}" />
+       	 	
+       	 	<label style="visibility:hidden;" for="password">Password :</label>
+        	
+       	 	<input style="visibility:hidden;" type="text" th:field="*{password}" />
         
     	<table border="1" cellpadding="10" style="background-color:aliceblue;">
         <tr>
@@ -39,14 +43,21 @@
         </tr>
 
         <tr>
-        	<td><label for="dep">Department :</label></td>       	
-        	<td><input type="text" th:field="*{department}" /></td>
+        	<td><label for="mobile">Mobile :</label></td>       	
+        	<td><input type="text" th:field="*{mobile}" /></td>
         </tr>
         
         <tr>
-        	<td><label for="email">Email :</label></td>    	
-        	<td><input type="text" th:field="*{email}" /></td>
+        	<td><label for="username">Username :</label></td>    	
+        	<td><input type="text" th:field="*{username}" /></td>
         </tr>
+        
+        <tr>
+        	<td><label for="role">Role :</label></td>    	
+        	<td><input type="text" th:field="*{role}" /></td>
+        </tr>
+        
+        
          <tr>
             <td><input class="btn btn-primary" name="submit" type="submit" value="Update" /></td>
          </tr>

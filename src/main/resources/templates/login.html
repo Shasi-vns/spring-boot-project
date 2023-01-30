@@ -1,0 +1,48 @@
+<html>
+<head>
+       <title>org.com</title>
+        <div 
+        style="background-color:cadetblue;color: white;
+  		text-align: left;font-family: verdana;
+  		font-size: 18px;
+  		padding: 10px;">
+  		<h2>Welcome to Org.com<h2>
+  		</div>
+  		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+
+<body>
+<center>
+   <h1 style="background-color:antiquewhite;padding:15px;width:auto;font-size:medium">Login</h1>
+   <br>
+   <p>
+   <span class="alert alert-success" th:if="${state!=null}" th:text="${state}"></span>
+   <span class="alert alert-danger" th:if="${message!=null}" th:text="${message}"></span>
+   <span th:if="${param.logout}">
+            <span class="alert alert-success">You have been logged out.</span></span>
+   </p>
+
+   <form name='f' action="login" method='POST'>
+      <table border="1" cellpadding="10" style="background-color:aliceblue;">
+         <tr>
+            <td>User:</td>
+            <td><input type='text' name='username' value=''></td>
+         </tr>
+         <tr>
+            <td>Password:</td>
+            <td><input type='password' name='password' /></td>
+         </tr>
+         <tr>
+            <td><input class="btn btn-primary" name="submit" type="submit" value="Submit" /></td>
+         </tr>
+      </table>
+  </form>
+  
+  <p><span>New User?</span>
+  <span><a href="/register">Register Here</a></span>
+  <p>
+</center>
+  
+</body>
+</html>

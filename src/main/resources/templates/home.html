@@ -8,14 +8,18 @@
   		font-size: 18px;
   		padding: 10px;">
   		<h2>Welcome to Org.com<h2>
-  		<h3 style="text-align: right;font-size:15px;">Hi. <span style="font-family:Verdana;color:yellow" th:text="${User}"></span></h3>
-  		<p style="text-align: right;font-size:15px;">
-  		<span><a href="/">Home</a></span>
-  		<span><a href="/addEmp">Add Employee</a></span>
-  		<span><a href="/logout">Logout</a></span>
+  		<p style="font-size:15px;">
+  		<span style="text-align: left;font-family:Verdana;color:yellow">Hi. <span th:text="${User}"></span></span>
+  		</p>
+  		<p>
+  		<span><a class="btn btn-primary" style="color: white;" href="/">Home</a></span>
+  		<span th:if="${right=='[ADMIN]'}"><a class="btn btn-primary" style="color: white;" href="/usersList">Users</a></span>
+  		<span><a class="btn btn-primary" style="color: white;" href="/addEmp">AddEmployee</a></span>
+  		<span><a class="btn btn-primary" style="color: white;" href="/logout">LogOut</a></span>
+  		</span>
   		</p>
   		</div>
-  		
+  		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <br><br>
         <script type="text/javascript">
         function validate()
@@ -24,16 +28,18 @@
             var regx = /^([a-z0-9\.-]+)@([a-z0-9-]+).([a-z]{2,8})(.[a-z]{2,8})?$/;
             if(regx.test(text))
             {
-                document.getElementById("lbuser").innerHTML="Valid";
-                document.getElementById("lbuser").style.visibility="visible";
-                document.getElementById("lbuser").style.color="green";
+				document.getElementById("mail").style.borderColor="green";
+                //document.getElementById("lbuser").innerHTML="Valid";
+                //document.getElementById("lbuser").style.visibility="visible";
+                //document.getElementById("lbuser").style.color="green";
                 return true;
             }
             else
             {
-                document.getElementById("lbuser").innerHTML="InValid";
-                document.getElementById("lbuser").style.visibility="visible";
-                document.getElementById("lbuser").style.color="red";
+				document.getElementById("mail").style.borderColor="red";
+                //document.getElementById("lbuser").innerHTML="InValid";
+                //document.getElementById("lbuser").style.visibility="visible";
+                //document.getElementById("lbuser").style.color="red";
                 return false;
 
             }
@@ -48,7 +54,7 @@
     <center>
     <form onsubmit="return validate();" action="#" th:action="@{/insert}" method="post">
     	
-    	<table border="1" cellpadding="10">
+    	<table border="1" cellpadding="10" style="background-color:aliceblue;">
 
         <tr>
         	<td style="text-align: center"><label for="name">Name :</label></td>
@@ -64,13 +70,14 @@
         	
         <tr>
         	<td style="text-align: center"><label for="dep">Email :</label></td>
-        	<td><input id="mail" type="email" name="email" placeholder="Enter Your Mail"/>
-        	<label id="lbuser" style="color:red;visibility:hidden" for="email">Invalid email..!</label></td>
+        	<td><input oninput="validate()" id="mail" type="email" name="email" placeholder="Enter Your Mail"/>
         </tr>
+        
+        <tr>
+            <td><input class="btn btn-primary" name="submit" type="submit" value="Submit" /></td>
+         </tr>
     	
     	</table>
-		<br>
-        <button type="submit">Submit</button>
         
 	</form>   
          </center>

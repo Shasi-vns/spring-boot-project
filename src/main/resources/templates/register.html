@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <title>org.com</title>
+        <div 
+        style="background-color:cadetblue;color: white;
+  		text-align: left;font-family: verdana;
+  		font-size: 18px;
+  		padding: 10px;">
+  		<h2>Welcome to Org.com<h2>
+  		<p th:if="${right=='[ADMIN]'}" style="font-size:15px;">
+  		<span style="text-align: left;font-family:Verdana;color:yellow">Hi. <span th:text="${User}"></span></span>
+  		</p>
+  		<p th:if="${right=='[ADMIN]'}">
+  		<span><a class="btn btn-primary" style="color: white;" href="/">Home</a></span>
+  		<span th:if="${right=='[ADMIN]'}"><a class="btn btn-primary" style="color: white;" href="/usersList">Users</a></span>
+  		<span><a class="btn btn-primary" style="color: white;" href="/addEmp">AddEmployee</a></span>
+  		<span><a class="btn btn-primary" style="color: white;" href="/logout">LogOut</a></span>
+  		</span>
+  		</p>
+  		</div>
+  		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  		
+  		<script type="text/javascript">
+        function validate()
+        {
+            var text = document.getElementById("mobile").value;
+            var regx = /^[7-9]\d{9}$/;
+            if(regx.test(text) && text.length==10)
+            {
+                document.getElementById("mobile").style.backgroundColor="green";
+                }
+            else
+            {
+                document.getElementById("mobile").style.backgroundColor="red";
+            }
+            
+        }
+        
+        </script>
+  		
+    </head>
+
+    
+    <body>
+    
+    <center>
+    <h1 style="background-color:antiquewhite;padding:15px;width:auto;font-size:medium">Registration</h1>
+    <br>
+    <form class="form-group" th:action="@{/insertUser}" th:object="${user}" method="post">
+    	
+    	<table border="1" cellpadding="10" style="background-color:aliceblue;">
+    	
+    	<tr>
+        	<td style="text-align: center"><label for="name">Name :</label></td>
+       	 	<td><input type="text" name="username" th:field="*{name}" placeholder="Enter Your Name"/></td>    	
+        </tr>
+
+        <tr>
+        	<td style="text-align: center"><label for="Username">Username :</label></td>
+       	 	<td><input type="text" name="username" th:field = "*{username}" placeholder="Enter Your Username"/></td>    	
+        </tr>
+        
+        <tr>
+        	<td style="text-align: center"><label for="mobile">Mobile :</label></td>
+       	 	<td><input onchange="validate()" id="mobile" type="text" name="username" th:field = "*{mobile}" placeholder="9000000000"/></td>    	
+        </tr>
+        
+        <tr>
+        	<td style="text-align: center"><label for="password">Password :</label></td>
+        	<td><input type="password" name="password" th:field = "*{password}" placeholder="Enter Password"/></td>
+        </tr>
+        
+        <tr th:if="${right=='[ADMIN]'}">
+        	<td style="text-align: center"><label for="role">Role :</label></td>
+        	<td><input type="text" name="role" th:field = "*{role}" placeholder="Enter Role"/></td>
+        </tr>
+        
+        <tr>
+            <td><input class="btn btn-primary" name="submit" type="submit" value="Submit" /></td>
+         </tr>
+
+    	
+    	</table>
+        
+	</form>   
+	<p>
+	<a th:if="${right=='[ADMIN]'}" href="/usersList">Back</a>
+	<a th:unless="${right=='[ADMIN]'}" href="/login">Back to login</a>
+	</p>
+         </center>
+
+
+    </body>
+
+</html>
