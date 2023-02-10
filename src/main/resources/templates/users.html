@@ -4,18 +4,16 @@
     <head>
     
     <style>
-body {
-  font-family: Arial;
-  color: white;
-}
+	body {
+  		font-family: Arial;
+  		color: white;
+	}
 
 .split {
-  height: 100%;
   width: 50%;
   position: fixed;
-  z-index: 1;
+
   top: 50;
-  overflow-x: hidden;
   padding-top: 20px;
 }
 
@@ -28,16 +26,11 @@ body {
 }
 
 .centered {
-  position: absolute;
+  
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-}
-
-.centered img {
-  width: 150px;
-  border-radius: 50%;
 }
 </style>
     
@@ -64,7 +57,13 @@ body {
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-		<script type="text/javascript">
+		<script th:inline="javascript" type="text/javascript">
+		
+	/*<![CDATA[*/
+  var noofu = /*[[${noofuser}]]*/ "Test";
+  var noofa = /*[[${noofadmins}]]*/ "Test1";
+  var noofcre = /*[[${noofcre}]]*/ "Test2";
+/*]]>*/		
 		// Load google charts
 		google.charts.load('current', {'packages':['corechart']});
 		google.charts.setOnLoadCallback(drawChart);
@@ -72,16 +71,15 @@ body {
 		// Draw the chart and set the chart values
 		function drawChart() {
   		var data = google.visualization.arrayToDataTable([
-  		['Task', 'Hours per Day'],
-  		['Work', 8],
-  		['Eat', 2],
-  		['TV', 4],
-  		['Gym', 2],
-  		['Sleep', 8]
+  		['Task vdf', 'Hours per Day'],
+  		['users', noofu],
+  		['admins', noofa],
+  		['creators', noofcre],
+  
 		]);
 
   		// Optional; add a title and set the width and height of the chart
-  		var options = {'title':'My Average Day', 'width':550, 'height':400};
+  		var options = {'title':'Admins-User Chart', 'width':550, 'height':400};
 
   		// Display the chart inside the <div> element with id="piechart"
   		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -94,10 +92,10 @@ body {
     
     <body>
     
-    <div class="split left" id="piechart"></div>
+    <div class="split left" style="margin-left:30px" id="piechart"></div>
     
     
-    <div class="split right">
+    <div class="split right" style="margin-right:20px">
      <center  th:switch="${users}">
     
     <form th:action="@{/usersList}">
@@ -107,11 +105,11 @@ body {
 
     <center th:switch="${users}">
     <br>
-    <div th:case="*">
+    <div th:case="*" style="overflow-y:auto">
     <table border="1" cellpadding="10" style="background-color:aliceblue;">
      <thead>
              <tr>
-                 <th>Name</th>
+                 <th>Name</th> 
                  <th>Mobile</th>
                  <th>Username</th>
                  <th>Role</th>

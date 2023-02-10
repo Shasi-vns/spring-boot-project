@@ -52,9 +52,9 @@ public class SecurityConfig {
 		http
 		.csrf().disable()
         .authorizeHttpRequests()
-        .requestMatchers("/").hasAnyAuthority("USER","ADMIN")
-        .requestMatchers("/addEmp").hasAnyAuthority("USER","ADMIN")
-        .requestMatchers("/insert").hasAnyAuthority("USER","ADMIN")
+        .requestMatchers("/").hasAnyAuthority("USER","ADMIN","CREATER")
+        .requestMatchers("/addEmp").hasAnyAuthority("USER","ADMIN","CREATER")
+        .requestMatchers("/insert").hasAnyAuthority("USER","ADMIN","CREATER")
 		.requestMatchers("/edit/{id}").hasAnyAuthority("ADMIN")
 		.requestMatchers("/delete/{id}").hasAnyAuthority("ADMIN")
 		.requestMatchers("/users").hasAnyAuthority("ADMIN")
@@ -70,6 +70,9 @@ public class SecurityConfig {
         .and()
         .logout().permitAll()
         .logoutUrl("/logout").permitAll()
+//        .and()
+//        .oauth2Login()
+//        .loginPage("/login")
         ;
 		
 	return http.build();

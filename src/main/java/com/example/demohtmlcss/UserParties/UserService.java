@@ -18,7 +18,7 @@ public class UserService {
 	
 	public String insertUser(User u) {
 		up.save(u);
-		return "User added Successfully";
+		return "User added Successfully with Id: "+u.getId() ;
 	}
 	
 	public String encodePassword(String a) {
@@ -28,6 +28,7 @@ public class UserService {
 	}
 	
 	public List<User> getall() {
+		
 		
 		List<User> list = up.findAll();
 		if (list.size()>0) {
@@ -47,9 +48,19 @@ public class UserService {
 		return "user deleted";
 	}
 	
-public Optional<User> getOne(Integer id){
+	public Optional<User> getOne(Integer id){
         return up.findById(id);
     }
 	
+	public Integer getnoofusers() {
+		return up.getnoofusers();
+	}
 	
+	public Integer getnoofadmins() {
+		return up.getnoofadmins();
+	}
+	
+	public Integer getnoofcreater() {
+		return up.getnoofcreaters();
+	}
 }

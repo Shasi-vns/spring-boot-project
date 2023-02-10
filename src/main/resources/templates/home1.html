@@ -63,7 +63,7 @@
      		<span th:unless="${right=='[ADMIN]'}"><a>Contact ADMIN to Edit</a></span>
      		</td>
      		<td>
-     		<span th:if="${right=='[ADMIN]'}"><a class="btn btn-primary" onclick="alert('Confirm to delete')" th:href = "@{/delete/{id}(id=${employee.id})}">Delete</a></span>
+     		<span th:if="${right=='[ADMIN]'}"><a class="btn btn-danger" onclick="alert('Confirm to delete')" th:href = "@{/delete/{id}(id=${employee.id})}">Delete</a></span>
      		<span th:unless="${right=='[ADMIN]'}"><a>Contact ADMIN to delete</a></span>
      		</td>
 

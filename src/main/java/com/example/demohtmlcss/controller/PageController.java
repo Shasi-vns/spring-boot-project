@@ -24,7 +24,6 @@ import com.example.demohtmlcss.securityConfig.CurrentDetails;
 
 
 @Controller
-
 public class PageController {
 	
 	@Autowired
@@ -145,6 +144,9 @@ public class PageController {
 				model.addAttribute("users",list);
 				}
 			model.addAttribute("User",cd.currentUser());
+			model.addAttribute("noofuser",us.getnoofusers());
+			model.addAttribute("noofadmins",us.getnoofadmins());
+			model.addAttribute("noofcre", us.getnoofcreater());
 			return "users";
 		}
 	

@@ -18,5 +18,13 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	 @Query(value="SELECT * FROM User u WHERE u.mobile = :keyword",nativeQuery=true)
 	 List<User> findByMobile(@Param("keyword") String keyword);
 	 
+	 @Query("SELECT COUNT(*) FROM User u WHERE u.role = 'USER'")
+	 Integer getnoofusers();
 	 
+	 @Query("SELECT COUNT(*) FROM User u WHERE u.role = 'ADMIN'")
+	 Integer getnoofadmins();
+	 
+	 
+	 @Query("SELECT COUNT(*) FROM User u WHERE u.role = 'CREATER'")
+	 Integer getnoofcreaters();
 }
