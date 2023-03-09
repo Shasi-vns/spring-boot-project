@@ -19,6 +19,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 import com.example.demohtmlcss.controller.Employee;
 import com.example.demohtmlcss.controller.EmployeeService;
 
@@ -28,6 +30,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	AuthenticationSuccessHandler successHandler;
 	
 	
 	@Bean
@@ -46,7 +51,7 @@ public class SecurityConfig {
 	}
 	    
 	@Bean
-	SecurityFilterChain web(HttpSecurity http) throws Exception
+	public SecurityFilterChain web(HttpSecurity http) throws Exception
 	{
 	
 		http
@@ -56,23 +61,23 @@ public class SecurityConfig {
         .requestMatchers("/addEmp").hasAnyAuthority("USER","ADMIN","CREATER")
         .requestMatchers("/insert").hasAnyAuthority("USER","ADMIN","CREATER")
 		.requestMatchers("/edit/{id}").hasAnyAuthority("ADMIN")
+//		.requestMatchers("/employeeTest").permitAll()
 		.requestMatchers("/delete/{id}").hasAnyAuthority("ADMIN")
 		.requestMatchers("/users").hasAnyAuthority("ADMIN")
 		.requestMatchers("/usersList").hasAnyAuthority("ADMIN")
-        .requestMatchers("/login").permitAll()
+        .requestMatchers("/login/**").permitAll()
         .requestMatchers("/insertUser").permitAll()
         .requestMatchers("/register").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin()
-        .loginPage("/login").permitAll()
+        .loginPage("/login").successHandler(successHandler)
         .failureUrl("/login-error").permitAll()
         .and()
         .logout().permitAll()
         .logoutUrl("/logout").permitAll()
-//        .and()
-//        .oauth2Login()
-//        .loginPage("/login")
+        .and()
+        .oauth2Login().loginPage("/login").successHandler(successHandler);
         ;
 		
 	return http.build();
